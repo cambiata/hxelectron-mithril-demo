@@ -16,19 +16,20 @@ class App {
 
     static function main() {
         window.onload = function(){
-            var info = 'hxelectron - '+process.version+' - '+process.versions['electron'];
-            console.info( info );
-	var appState:AppState = { info: info, text:'Mithril Electron' };
-	
-	var index = new Index(appState);	
-	haxe.Timer.delay( function() {
-		mithril.M.mount(js.Browser.document.body, index);
-	}, 1000);			
+            var electronInfo = 'hxelectron - ' + process.version + ' - ' + process.versions['electron'];
+            console.info( electronInfo );
+			var appState:AppState = { electronInfo: electronInfo, text:'Hello world! from Mithril Electron' };
+			
+			var index = new Index(appState);	
+			haxe.Timer.delay( function() {
+				// Short delay to see when mithril kicks in...
+				M.mount(document.body, index);
+			}, 2000);			
         }
     }
 }
 
-typedef AppState = {text:String, info:String};
+typedef AppState = {text:String, electronInfo:String};
 
 class Index implements Mithril  {
 	
@@ -38,7 +39,7 @@ class Index implements Mithril  {
 	}	
 	
 	public function view() [
-		m('p', 'Hello world:' + this.appState),
+		m('p', 'AppState: ' + this.appState),
 		m("input", { oninput:  function(e) this.appState.text = e.target.value, value: this.appState.text } ),
 		m('p',  this.appState.text),
 	];

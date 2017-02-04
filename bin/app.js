@@ -5,13 +5,13 @@ var App = function() { };
 App.__name__ = true;
 App.main = function() {
 	window.onload = function() {
-		var info = "hxelectron - " + process.version + " - " + process.versions["electron"];
-		window.console.info(info);
-		var appState = { info : info, text : "Mithril Electron"};
+		var electronInfo = "hxelectron - " + process.version + " - " + process.versions["electron"];
+		window.console.info(electronInfo);
+		var appState = { electronInfo : electronInfo, text : "Hello world! from Mithril Electron"};
 		var index = new Index(appState);
 		haxe_Timer.delay(function() {
 			m.mount(window.document.body,index);
-		},1000);
+		},2000);
 	};
 };
 var mithril_Mithril = function() { };
@@ -25,7 +25,7 @@ Index.prototype = {
 	view: function() {
 		var _gthis = this;
 		if(arguments.length > 0 && arguments[0].tag != this) return arguments[0].tag.view.apply(arguments[0].tag, arguments);
-		return [m.m("p","Hello world:" + Std.string(this.appState)),m.m("input",{ oninput : function(e) {
+		return [m.m("p","AppState: " + Std.string(this.appState)),m.m("input",{ oninput : function(e) {
 			_gthis.appState.text = e.target.value;
 		}, value : this.appState.text}),m.m("p",this.appState.text)];
 	}
