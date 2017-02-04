@@ -1,2 +1,2 @@
 # hxelectron-mithril-demo
-Simple Haxe demo project using electron and mithril 
+Simple Haxe demo project using electron and mithril.
